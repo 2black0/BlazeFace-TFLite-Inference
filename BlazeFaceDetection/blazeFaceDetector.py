@@ -8,7 +8,6 @@ KEY_POINT_SIZE = 6
 MAX_FACE_NUM = 100
 
 class blazeFaceDetector():
-
 	def __init__(self, type = "front", scoreThreshold = 0.7, iouThreshold = 0.3):
 		self.type = type
 		self.scoreThreshold = scoreThreshold
@@ -36,7 +35,6 @@ class blazeFaceDetector():
 		self.getModelOutputDetails()
 
 	def detectFaces(self, image):
-
 		# Prepare image for inference
 		input_tensor = self.prepareInputForInference(image)
 
@@ -72,7 +70,6 @@ class blazeFaceDetector():
 
 
 	def drawDetections(self, img, results):
-
 		boundingBoxes = results.boxes
 		keypoints = results.keypoints
 		scores = results.scores
@@ -94,8 +91,7 @@ class blazeFaceDetector():
 				cv2.circle(img,(xKeypoint,yKeypoint), 4, (214, 202, 18), -1)
 
 		# Add fps counter
-		# cv2.putText(img, f'FPS: {self.fps}', (40, 40)
-		# 						,cv2.FONT_HERSHEY_SIMPLEX, 1, (22, 250, 22), 2)
+		cv2.putText(img, f'FPS: {self.fps}', (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (22, 250, 22), 2)
 
 		return img
 
@@ -137,8 +133,7 @@ class blazeFaceDetector():
 		# Input values should be from -1 to 1 with a size of 128 x 128 pixels for the fornt model
 		# and 256 x 256 pixels for the back model
 		img = img / 255.0
-		img_resized = tf.image.resize(img, [self.inputHeight,self.inputWidth], 
-									method='bicubic', preserve_aspect_ratio=False)
+		img_resized = tf.image.resize(img, [self.inputHeight,self.inputWidth], method='bicubic', preserve_aspect_ratio=False)
 		img_input = img_resized.numpy()
 		img_input = (img_input - 0.5) / 0.5
 

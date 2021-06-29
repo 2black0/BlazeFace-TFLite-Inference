@@ -10,9 +10,9 @@ faceDetector = blazeFaceDetector(modelType, scoreThreshold, iouThreshold)
 
 # Initialize webcam
 camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-cv2.namedWindow("detections", cv2.WINDOW_NORMAL) 
-while True:
+#cv2.namedWindow("detections", cv2.WINDOW_NORMAL) 
 
+while True:
 	# Read frame from the webcam
 	ret, img = camera.read()	
 
